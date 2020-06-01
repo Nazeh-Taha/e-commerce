@@ -1,11 +1,21 @@
-import React from "react";
-import data from "../data";
+import React, { useEffect }  from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { detailsProduct } from "../actions/productActions";
 
 function ProductBage({ match }) {
   const id = match.params.id;
-  const product = data.products.find((item) => item._id === id);
+  // const product = data.products.find((item) => item._id === id);
+  const productDetails = useSelector(state => state.productDetails);
+  const {product , loading, error} = productDetails;
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+dispatch(detailsProduct());
+    return () => {
+     
+    };
+  }, [])
   return (
     <>
       <div>

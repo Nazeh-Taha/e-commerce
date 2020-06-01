@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import HomeBage from "./Bages/HomeBage";
-import ProductBage from "./Bages/ProductBage";
+import HomeBage from "./bages/HomeBage";
+import ProductBage from "./bages/ProductBage";
 import "./App.css";
 
 function App() {
