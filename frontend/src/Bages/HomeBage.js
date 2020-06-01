@@ -23,7 +23,7 @@ function HomeBage() {
         {products.map((product, i) => (
           <li key={i}>
             <div className="product">
-              <Link to={"/product/" + product._id}>
+              <Link to={"/products/" + product._id}>
                 <img
                   className="product-img"
                   src={product.image}
@@ -31,7 +31,7 @@ function HomeBage() {
                 />
               </Link>
               <div className="product-name">
-                <Link to={"/product/" + product._id}>{product.name}</Link>
+                <Link to={"/products/" + product._id}>{product.name}</Link>
               </div>
               <div className="product-brand">{product.brand}</div>
               <div className="product-price">${product.price}</div>

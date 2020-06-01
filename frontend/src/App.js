@@ -42,7 +42,7 @@ function App() {
         <main className="main">
           <div className="content">
             <Route path="/" component={HomeBage} exact />
-            <Route path="/product/:id" component={ProductBage} />
+            <Route path="/products/:id" component={ProductBage} />
           </div>
         </main>
         <footer className="footer">all right reserved.</footer>
