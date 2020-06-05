@@ -41,7 +41,7 @@ export default {
         brand: ' Nike',
         rating: 4.5,
         numReviews: 8,
-        countInStack: 6
+        countInStack: 0
       },
     ]
   }

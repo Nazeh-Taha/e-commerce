@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import HomeBage from "./bages/HomeBage";
 import ProductBage from "./bages/ProductBage";
 import "./App.css";
+import CartBage from "./bages/CartBage";
 
 function App() {
   let open = true;
@@ -42,6 +43,7 @@ function App() {
         <main className="main">
           <div className="content">
             <Route path="/" component={HomeBage} exact />
+            <Route path="/cart/:id?" component={CartBage} />
             <Route path="/products/:id" component={ProductBage} />
           </div>
         </main>

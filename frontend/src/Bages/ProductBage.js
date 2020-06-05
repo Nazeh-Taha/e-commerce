@@ -15,6 +15,10 @@ function ProductBage(props) {
     dispatch(detailsProduct(id));
     return () => {};
   }, []);
+
+  const handleAddToCart = () =>{
+    props.history.push("/cart/" + id + "?qty=" + qty);
+  }
   return (
     <>
       <div>
@@ -49,7 +53,7 @@ function ProductBage(props) {
           <div className="details-action">
             <ul>
               <li>Price: {product.price}</li>
-              <li>Status: {product.status}</li>
+      <li>Status: {product.countInStack > 0 ? "In Stack" : "Out of Stack"}</li>
               <li>
                
               Qty: <select value={qty} onChange={(e)=>{setQty(e.target.value)}}>
@@ -60,7 +64,10 @@ function ProductBage(props) {
                 </select>
               </li>
               <li>
-                <button>Add To Cart</button>
+                {
+                  product.countInStack > 0 && <button onClick={handleAddToCart}>Add To Cart</button> 
+                }
+                
               </li>
             </ul>
           </div>
