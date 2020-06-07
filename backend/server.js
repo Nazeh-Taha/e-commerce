@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8000;
 const mongodbUrl = config.MONGODB_URL;
 
 mongoose
-  .connect(mongodbUrl , {
+  .connect(mongodbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

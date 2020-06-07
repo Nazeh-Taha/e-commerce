@@ -5,9 +5,14 @@ import ProductBage from "./bages/ProductBage";
 import "./App.css";
 import CartBage from "./bages/CartBage";
 import SigninBage from "./bages/SigninBage";
+import { useSelector } from "react-redux";
+import RegisterBage from "./bages/RegisterBage";
 
 function App() {
-  let open = true;
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
+  let open = true; // for sidebar
   const openMenu = () => {
     if (open === true) {
       document.querySelector(".asidebar").classList.add("open");
@@ -27,7 +32,11 @@ function App() {
           </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
-            <Link to="/signin">signin</Link>
+            {userInfo ? (
+              <Link to="/profile">{userInfo.name}</Link>
+            ) : (
+              <Link to="/signin">signin</Link>
+            )}
           </div>
         </header>
         <aside className="asidebar">
@@ -45,6 +54,7 @@ function App() {
           <div className="content">
             <Route path="/" component={HomeBage} exact />
             <Route path="/signin" component={SigninBage} />
+            <Route path="/register" component={RegisterBage}/>
             <Route path="/cart/:id?" component={CartBage} />
             <Route path="/products/:id" component={ProductBage} />
           </div>

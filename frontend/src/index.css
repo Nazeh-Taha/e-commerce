@@ -221,7 +221,7 @@ align-items: flex-end;
 .form-container li {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 0.5rem;
 }
 input{
   padding: 1.5rem;
