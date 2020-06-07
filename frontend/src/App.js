@@ -4,6 +4,7 @@ import HomeBage from "./bages/HomeBage";
 import ProductBage from "./bages/ProductBage";
 import "./App.css";
 import CartBage from "./bages/CartBage";
+import SigninBage from "./bages/SigninBage";
 
 function App() {
   let open = true;
@@ -26,7 +27,7 @@ function App() {
           </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
-            <a href="signin.html">Sign In</a>
+            <Link to="/signin">signin</Link>
           </div>
         </header>
         <aside className="asidebar">
@@ -43,6 +44,7 @@ function App() {
         <main className="main">
           <div className="content">
             <Route path="/" component={HomeBage} exact />
+            <Route path="/signin" component={SigninBage} />
             <Route path="/cart/:id?" component={CartBage} />
             <Route path="/products/:id" component={ProductBage} />
           </div>

@@ -199,3 +199,32 @@ align-items: flex-end;
 .cart-price{
   flex: 1 1;
 }
+
+/* Sign in Bage */
+
+.form {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.form-container{
+  flex-direction: column;
+    list-style-type: none;
+    display: flex;
+    padding: 2rem;
+    border: 0.1rem gray solid;
+    margin-top: 1.5rem;
+    border-radius: 1.5rem;
+}
+.form-container li {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+input{
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}
