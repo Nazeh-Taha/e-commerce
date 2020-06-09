@@ -35,9 +35,9 @@ function CartBage(props) {
           {cartItems.length === 0 ? (
             <div>Cart Is Empty</div>
           ) : (
-            cartItems.map((item) => (
-              <>
-                <li>
+            cartItems.map((item,i) => (
+              <div key={i}>
+                <li >
                   <div className="cart-image">
                     <img src={item.image} alt="image" />
                   </div>
@@ -62,7 +62,7 @@ function CartBage(props) {
 
                   <div className="cart-price">${item.price}</div>
                 </li>
-              </>
+              </div>
             ))
           )}
         </ul>

@@ -5,7 +5,7 @@ import { detailsProduct } from "../actions/productActions";
 
 function ProductBage(props) {
   const [qty, setQty] = useState(1);
-  const [test, setTest] = useState({});
+  
   const id = props.match.params.id;
   const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
@@ -13,14 +13,12 @@ function ProductBage(props) {
 
   useEffect(() => {
     dispatch(detailsProduct(id));
-    setTest(productDetails);
+   
     return () => {
       //
     };
   }, []);
-  if(test.loading === false){
-  console.log(test)
-  }
+ 
   const handleAddToCart = () => {
     props.history.push("/cart/" + id + "?qty=" + qty);
   };
@@ -32,7 +30,7 @@ function ProductBage(props) {
         <div>loading...</div>
       : error ? 
         <div>{error}</div>
-      : test.loading !== false &&(
+      :  (
         <div className="details">
           <div className="details-img">
             <img src={product.image} alt="img" />
@@ -58,7 +56,7 @@ function ProductBage(props) {
             <ul>
               <li>Price: {product.price}</li>
               <li>
-                Status: {product.countInStack > 0 ? "In Stack" : "Out of Stack"}
+                Status: {product.countInStock > 0 ? "In Stack" : "Out of Stack"}
               </li>
               <li>
                 Qty:{" "}
@@ -68,7 +66,7 @@ function ProductBage(props) {
                     setQty(e.target.value);
                   }}
                 >
-                  {[...Array(product.countInStack).keys()].map((x) => (
+                  {[...Array(product.countInStock).keys()].map((x) => (
                     <option key={x} value={x + 1}>
                       {x + 1}
                     </option>
@@ -76,7 +74,7 @@ function ProductBage(props) {
                 </select>
               </li>
               <li>
-                {product.countInStack > 0 && 
+                {product.countInStock > 0 && 
                   <button onClick={handleAddToCart}>Add To Cart</button>
                 }
               </li>
