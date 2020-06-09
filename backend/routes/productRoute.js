@@ -1,6 +1,7 @@
 import express from "express";
 import Product from "../models/productModel";
 import { getToken } from "../util";
+
 const router = express.Router();
 
 // create new user
@@ -36,4 +37,37 @@ router.post("/", async (req, res) => {
     res.status(500).send({ msg: "Error in Creatin Product" });
   }
 });
+
+router.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  const product = await Product.findById(id);
+  if(product)
+    product.name = req.body.name;
+    product.image= req.body.image;
+    product.brand= req.body.brand;
+    product.price= req.body.price;
+    product.category= req.body.category;
+    product.countInStock= req.body.countInStock;
+    product.description= req.body.description;
+    const UpdatedProduct = await product.save();
+    if (UpdatedProduct) {
+      res.status(200).send({ msg: "Product Updated", data: UpdatedProduct });
+    } else {
+      res.status(500).send({ msg: "Error in Updating Product" });
+    }
+  });
+
+  router.delete("/:id", async (req,res)=>{
+    const id = req.params.id;
+    const deleteedProduct = await Product.findByIdAndRemove(id);
+    if(deleteedProduct){
+    
+      res.send({msg: "Product Deleted Succsses"});
+    }else{
+      res.send({msg : "ERROR in Deletion"})
+    }
+
+  })
+
+
 export default router;

@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { saveProduct, listProducts } from "../actions/productActions";
+import { saveProduct, listProducts, deleteProduct } from "../actions/productActions";
 
 function CreateProductBage(props) {
   const productSave = useSelector((state) => state.productSave);
   const productList = useSelector((state) => state.productList);
+  const productDelete = useSelector((state)=>state.productDelete);
   const { loading, products, error } = productList;
   const {
     loading: loadingSave,
     success: successSave,
     error: errorSave,
   } = productSave;
+  const {
+    loading: loadingDelete,
+    success: successDelete,
+    error: errorDelete,
+  } = productDelete;
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [id, setId] = useState("");
@@ -24,9 +30,12 @@ function CreateProductBage(props) {
   const [description, setDescription] = useState(0);
 
   useEffect(() => {
+    if(successSave){
+      setModalVisible(false);
+    }
     dispatch(listProducts());
     return () => {};
-  }, []);
+  }, [successSave, successDelete]);
 
   const openModal = (product) => {
     setModalVisible(true);
@@ -54,6 +63,10 @@ function CreateProductBage(props) {
       })
     );
   };
+
+  const deleteHandler = (product) =>{
+  dispatch(deleteProduct(product._id));
+  }
   return (
     <>
       <div className="content content-margined">
@@ -160,9 +173,9 @@ function CreateProductBage(props) {
                 <th>Brand</th>
                 <th>Action</th>
               </tr>
+              </thead>
               <tbody>
-                {products.map((product) => (
-                  <tr>
+                {products.map((product,i) => (<tr key={i}>
                     <td>{product._id}</td>
                     <td>{product.name}</td>
                     <td>{product.price}</td>
@@ -170,12 +183,12 @@ function CreateProductBage(props) {
                     <td>{product.brand}</td>
                     <td>
                       <button onClick={() => openModal(product)}>Edit</button>
-                      <button>Delete</button>
+                      <button onClick={() => deleteHandler(product)}>Delete</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
-            </thead>
+            
           </table>
         </div>
       </div>
