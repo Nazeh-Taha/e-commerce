@@ -4,31 +4,35 @@ import { useSelector, useDispatch } from "react-redux";
 import { detailsProduct } from "../actions/productActions";
 
 function ProductBage(props) {
-  const [qty,setQty] = useState(1);
+  const [qty, setQty] = useState(1);
+  const [test, setTest] = useState({});
   const id = props.match.params.id;
   const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
     dispatch(detailsProduct(id));
-    return () => {};
+    setTest(productDetails);
+    return () => {
+      //
+    };
   }, []);
-
-  const handleAddToCart = () =>{
-    props.history.push("/cart/" + id + "?qty=" + qty);
+  if(test.loading === false){
+  console.log(test)
   }
-  return (
-    <>
+  const handleAddToCart = () => {
+    props.history.push("/cart/" + id + "?qty=" + qty);
+  };
+  return <div>
       <div>
         <Link to="/">Back To Home</Link>
       </div>
-      {loading ? (
+      {loading ? 
         <div>loading...</div>
-      ) : error ? (
+      : error ? 
         <div>{error}</div>
-      ) : (
+      : test.loading !== false &&(
         <div className="details">
           <div className="details-img">
             <img src={product.image} alt="img" />
@@ -53,27 +57,34 @@ function ProductBage(props) {
           <div className="details-action">
             <ul>
               <li>Price: {product.price}</li>
-      <li>Status: {product.countInStack > 0 ? "In Stack" : "Out of Stack"}</li>
               <li>
-               
-              Qty: <select value={qty} onChange={(e)=>{setQty(e.target.value)}}>
-                  {
-                    [...Array(product.countInStack).keys()].map(x=>
-                      <option key={x} value={x+1}>{x+1}</option>)
-                  }
+                Status: {product.countInStack > 0 ? "In Stack" : "Out of Stack"}
+              </li>
+              <li>
+                Qty:{" "}
+                <select
+                  value={qty}
+                  onChange={(e) => {
+                    setQty(e.target.value);
+                  }}
+                >
+                  {[...Array(product.countInStack).keys()].map((x) => (
+                    <option key={x} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
                 </select>
               </li>
               <li>
-                {
-                  product.countInStack > 0 && <button onClick={handleAddToCart}>Add To Cart</button> 
+                {product.countInStack > 0 && 
+                  <button onClick={handleAddToCart}>Add To Cart</button>
                 }
-                
               </li>
             </ul>
           </div>
         </div>
       )}
-    </>
-  );
+    </div>
+ 
 }
 export default ProductBage;
