@@ -32,7 +32,7 @@ function App() {
             <Link to="/">e-commerce</Link>
           </div>
           <div className="header-links">
-            <a href="cart.html">Cart</a>
+          <Link to="/cart">Cart</Link>
             {userInfo ? (
               <Link to="/profile">{userInfo.name}</Link>
             ) : (
@@ -57,6 +57,7 @@ function App() {
             <Route path="/signin" component={SigninBage} />
             <Route path="/products" component={CreateProductBage} exact/>
             <Route path="/register" component={RegisterBage}/>
+           
             <Route path="/cart/:id?" component={CartBage} />
             <Route path="/products/:id" component={ProductBage} />
           </div>
