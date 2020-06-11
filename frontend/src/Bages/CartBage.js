@@ -20,9 +20,9 @@ function CartBage(props) {
     : 1;
 
   useEffect(() => {
-    if (id) {
-      dispatch(addToCart(id, qty));
-    }
+    
+      
+ 
   }, []);
   return (
     <div className="cart">

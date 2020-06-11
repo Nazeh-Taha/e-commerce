@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { detailsProduct } from "../actions/productActions";
-
+import { addToCart } from "../actions/cartActions";
 function ProductBage(props) {
   const [qty, setQty] = useState(1);
   
@@ -20,7 +20,8 @@ function ProductBage(props) {
   }, []);
  
   const handleAddToCart = () => {
-    props.history.push("/cart/" + id + "?qty=" + qty);
+    dispatch(addToCart(id, qty));
+    props.history.push("/cart");
   };
   return <div>
       <div>
