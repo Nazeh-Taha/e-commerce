@@ -14,16 +14,7 @@ function CartBage(props) {
   const checkoutHandler = () =>{
     props.history.push("/signin?redirect=shiping")
   }
-  const id = props.match.params.id;
-  const qty = props.location.search
-    ? Number(props.location.search.split("=")[1])
-    : 1;
 
-  useEffect(() => {
-    
-      
- 
-  }, []);
   return (
     <div className="cart">
       <div className="cart-list">

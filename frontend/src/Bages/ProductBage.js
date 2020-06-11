@@ -21,7 +21,7 @@ function ProductBage(props) {
  
   const handleAddToCart = () => {
     dispatch(addToCart(id, qty));
-    props.history.push("/cart");
+    // props.history.push("/cart");
   };
   return <div>
       <div>

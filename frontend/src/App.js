@@ -8,7 +8,7 @@ import SigninBage from "./bages/SigninBage";
 import { useSelector } from "react-redux";
 import RegisterBage from "./bages/RegisterBage";
 import CreateProductBage from "./bages/CreateProductBage";
-
+import PrivateRoute from './PrivateRoute';
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
@@ -55,7 +55,8 @@ function App() {
           <div className="content">
             <Route path="/" component={HomeBage} exact />
             <Route path="/signin" component={SigninBage} />
-            <Route path="/products" component={CreateProductBage} exact/>
+            <PrivateRoute path="/admin/dashbord" component={CreateProductBage} />
+            
             <Route path="/register" component={RegisterBage}/>
            
             <Route path="/cart/:id?" component={CartBage} />
