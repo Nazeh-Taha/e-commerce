@@ -8,7 +8,8 @@ import SigninBage from "./bages/SigninBage";
 import { useSelector } from "react-redux";
 import RegisterBage from "./bages/RegisterBage";
 import CreateProductBage from "./bages/CreateProductBage";
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from "./PrivateRoute";
+import NavBar from "./component/Navbar";
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
@@ -25,6 +26,7 @@ function App() {
   };
   return (
     <Router>
+      <NavBar />
       <div className="grade-container">
         <header className="header">
           <div className="brand">
@@ -32,7 +34,7 @@ function App() {
             <Link to="/">e-commerce</Link>
           </div>
           <div className="header-links">
-          <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart</Link>
             {userInfo ? (
               <Link to="/profile">{userInfo.name}</Link>
             ) : (
@@ -55,10 +57,11 @@ function App() {
           <div className="content">
             <Route path="/" component={HomeBage} exact />
             <Route path="/signin" component={SigninBage} />
-            <PrivateRoute path="/admin/dashbord" component={CreateProductBage} />
-            
-            <Route path="/register" component={RegisterBage}/>
-           
+            <PrivateRoute
+              path="/admin/dashbord"
+              component={CreateProductBage}
+            />
+            <Route path="/register" component={RegisterBage} />
             <Route path="/cart/:id?" component={CartBage} />
             <Route path="/products/:id" component={ProductBage} />
           </div>

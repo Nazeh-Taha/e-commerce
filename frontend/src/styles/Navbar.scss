@@ -1,0 +1,46 @@
+@import './variables';
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.progress-div{
+    height: 3px;
+    background-color: #f1f1f1;
+    width: 100%;
+    .progress{
+        height: 3px;
+    background-color: $textColor;;
+    transition: 1s ease;
+    
+    }
+}
+.hide{
+    opacity: 0;
+    transition: 0.5s ease;
+}
+.navbar-container{
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 3.4rem 7rem;
+    justify-content: space-between;
+    align-items: center;
+    color: $textColor;
+    a{
+        color: $textColor;
+    }
+    li{
+        padding-right: 30px;
+        
+    }
+    .navbar-user {
+        display: flex;
+        flex-wrap: nowrap;
+        list-style-type: none;
+    }
+    .navbar-links {
+        @extend .navbar-user 
+    }
+ 
+}
