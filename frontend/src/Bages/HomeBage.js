@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listProducts } from "../actions/productActions";
+import Carousel from "../component/Carousel";
 
 function HomeBage() {
   const productList = useSelector((state) => state.productList);
@@ -19,6 +20,7 @@ function HomeBage() {
     <div>{error}</div>
   ) : (
     <>
+    <Carousel />
       <ul className="products">
         {products.map((product, i) => (
           <li key={i}>
