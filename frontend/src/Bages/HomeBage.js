@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listProducts } from "../actions/productActions";
 import Carousel from "../component/Carousel";
-
+// import Slider from "../component/Slider";
+import MainSlider from "../component/MainSlider";
 function HomeBage() {
   const productList = useSelector((state) => state.productList);
   const { products, loading, error } = productList;
@@ -20,7 +21,9 @@ function HomeBage() {
     <div>{error}</div>
   ) : (
     <>
-    <Carousel />
+   
+   
+   <MainSlider />
       <ul className="products">
         {products.map((product, i) => (
           <li key={i}>
