@@ -1,3 +1,5 @@
+@import './variables';
+
 .slide-container {
     cursor: grab;
 
@@ -25,7 +27,11 @@
     }
 }
 
-.slideshow__image {
+.slider {
+    outline: none;
+}
+
+.slider__image--wrap {
     position: absolute;
     top: 0;
     left: 0;
@@ -35,15 +41,56 @@
     background-size: cover;
     z-index: 1;
     background-position: center top;
-
     transform: translateX(0px);
 }
 
-.slideshow__image__wrap {
+.slider__text--wrap {
+    position: absolute;
+    left: 12%;
+    top: 35%;
+    z-index: 26;
 
-    height: 100%;
-    width: 100%;
+    h1 {
+        color: #8fa149;
+        line-height: 1.1;
+        letter-spacing: 3px;
+        margin-bottom: 25px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
 
+    p {
+        color: $textColor;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        margin-bottom: 30px;
+        font-size: 45px;
+        font-weight: 600;
+        max-width: 380px;
+    }
+
+    a {
+
+        text-decoration: none;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        letter-spacing: 4px;
+        border-bottom: 2px solid;
+        border-color: $textColor;
+        overflow: visible;
+        padding: 0 0 6px;
+        font-size: 10px;
+        font-weight: 700;
+        color: $textColor;
+        transition: border-color 0.3s ease;
+        text-transform: uppercase;
+        &:hover{
+            
+            border-color: transparent;
+        }
+    }
 }
 
 .slider__wrapper {

@@ -15,19 +15,19 @@ function App() {
   const { userInfo } = userSignin;
 
   let open = true; // for sidebar
-  const openMenu = () => {
-    if (open === true) {
-      document.querySelector(".asidebar").classList.add("open");
-      open = false;
-    } else {
-      document.querySelector(".asidebar").classList.remove("open");
-      open = true;
-    }
-  };
+  // const openMenu = () => {
+  //   if (open === true) {
+  //     document.querySelector(".asidebar").classList.add("open");
+  //     open = false;
+  //   } else {
+  //     document.querySelector(".asidebar").classList.remove("open");
+  //     open = true;
+  //   }
+  // };
   return (
     <Router>
       <NavBar />
-      <div className="grade-container">
+      {/* <div className="grade-container">
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
@@ -41,8 +41,8 @@ function App() {
               <Link to="/signin">signin</Link>
             )}
           </div>
-        </header>
-        <aside className="asidebar">
+        </header> */}
+        {/* <aside className="asidebar">
           <h3>Shoping Categories</h3>
           <ul>
             <li>
@@ -52,7 +52,7 @@ function App() {
               <a href="index.html">Shirts</a>
             </li>
           </ul>
-        </aside>
+        </aside> */}
         <main className="main">
           <div className="content">
             <Route path="/" component={HomeBage} exact />
@@ -67,7 +67,7 @@ function App() {
           </div>
         </main>
         <footer className="footer">all right reserved.</footer>
-      </div>
+     
     </Router>
   );
 }
