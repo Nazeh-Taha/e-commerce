@@ -37,6 +37,46 @@
         list-style-type: none;
         flex: 0 40%;
         justify-content: flex-end;
+        align-items: center;
+        .navbar-user--icon{
+            font-size: 30px;
+            display: block;
+        }
+        .rotate{
+            transform: rotate(-40deg);
+        }
+        .navbar-user--login{
+            position: relative;
+            ul{
+                position: absolute;
+                z-index: 2;
+                list-style-type: none;
+               
+                right: 0;
+                width: 200px;
+                
+                clip-path: polygon(0 0, 100% 0%, 100% 10%, 0 100%);
+              background-color:$backgroundColor ;
+               opacity: 0;
+               transition: opacity 0.2s, clip-path 0.4s;
+               transition-timing-function: ease;
+          
+
+            }
+            a{
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                height: 500px;
+                width: 500px;
+                right: 0;
+                z-index: 3;
+                display: block;
+          }
+        }
+ 
+        }
         li{
             
             padding-left: 30px;
@@ -50,6 +90,10 @@
             padding-left: 0;
             padding-right: 30px;
         }
+    }
+    img{
+        height: 60px;
+        width: 60px;
     }
  
 }

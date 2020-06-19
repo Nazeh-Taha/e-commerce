@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listProducts } from "../actions/productActions";
-import Carousel from "../component/Carousel";
-// import Slider from "../component/Slider";
 import MainSlider from "../component/MainSlider";
+
+
 function HomeBage() {
   const productList = useSelector((state) => state.productList);
   const { products, loading, error } = productList;

@@ -1,7 +1,6 @@
 import React,{ useRef, useEffect, useState } from "react";
 import Slider from "infinite-react-carousel";
 import {Link} from "react-router-dom";
-import Background from "../images/slide1.webp";
 import { TweenMax, Power3 } from "gsap";
 import "../styles/MainSlider.scss";
 
@@ -18,17 +17,16 @@ const MainSlider = () => {
   };
  
   useEffect(() => {
+    // const slideItem = document.querySelector(".carousel-track");
     const slideItem = document.querySelector(".carousel-track");
 console.log(slideItem);
-    console.log(
-      Array.from(slideItem.children))
-    console.log(carouselEl.current);
+   
     return () => {
       
     };
   }, [])
   return (
-    <div className="test">
+    
       <Slider {...settings} className="slide-container" ref={carouselEl}>
         {sliderData.map((item,i)=>(
           <div className="slider" key={i}>
@@ -47,7 +45,7 @@ console.log(slideItem);
         ))}
 
       </Slider>
-    </div>
+  
   );
 };
 
