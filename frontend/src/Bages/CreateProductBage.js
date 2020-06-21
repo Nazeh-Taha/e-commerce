@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { saveProduct, listProducts, deleteProduct } from "../actions/productActions";
 
 function CreateProductBage(props) {
+
+
   const productSave = useSelector((state) => state.productSave);
   const productList = useSelector((state) => state.productList);
   const productDelete = useSelector((state)=>state.productDelete);
+
   const { loading, products, error } = productList;
   const {
     loading: loadingSave,
@@ -67,7 +69,9 @@ function CreateProductBage(props) {
   const deleteHandler = (product) =>{
   dispatch(deleteProduct(product._id));
   }
+  
   return (
+    
     <>
       <div className="content content-margined">
         <div className="products-header">

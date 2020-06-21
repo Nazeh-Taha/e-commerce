@@ -5,6 +5,7 @@ import {
   USER_REGISTER_REQUIST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_LOGOUT,
 } from "../constants/userConstants";
 
 function userSigninReducer(state = {}, action) {
@@ -19,7 +20,14 @@ function userSigninReducer(state = {}, action) {
       return state;
   }
 }
-
+function userLogOut(state ={},action){
+  switch (action.type){
+    case USER_LOGOUT :
+      return {userInfo :action.payload};
+      default:
+        return state;
+  }
+}
 function userRegisterReducer(state = {}, action) {
   switch (action.type) {
     case USER_REGISTER_REQUIST:

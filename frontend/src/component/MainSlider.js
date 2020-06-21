@@ -17,7 +17,7 @@ const MainSlider = () => {
   };
  
   useEffect(() => {
-    // const slideItem = document.querySelector(".carousel-track");
+   
     const slideItem = document.querySelector(".carousel-track");
 console.log(slideItem);
    

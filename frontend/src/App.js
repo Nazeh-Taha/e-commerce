@@ -1,20 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import HomeBage from "./bages/HomeBage";
 import ProductBage from "./bages/ProductBage";
 import "./App.css";
 import CartBage from "./bages/CartBage";
 import SigninBage from "./bages/SigninBage";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import RegisterBage from "./bages/RegisterBage";
 import CreateProductBage from "./bages/CreateProductBage";
 import PrivateRoute from "./PrivateRoute";
 import NavBar from "./component/Navbar";
 function App() {
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
+  // const userSignin = useSelector((state) => state.userSignin);
+  // const { userInfo } = userSignin;
 
-  let open = true; // for sidebar
+  // let open = true; // for sidebar
   // const openMenu = () => {
   //   if (open === true) {
   //     document.querySelector(".asidebar").classList.add("open");
@@ -26,6 +26,7 @@ function App() {
   // };
   return (
     <Router>
+      
       <NavBar />
       {/* <div className="grade-container">
         <header className="header">
@@ -42,17 +43,7 @@ function App() {
             )}
           </div>
         </header> */}
-        {/* <aside className="asidebar">
-          <h3>Shoping Categories</h3>
-          <ul>
-            <li>
-              <a href="index.html">Pants</a>
-            </li>
-            <li>
-              <a href="index.html">Shirts</a>
-            </li>
-          </ul>
-        </aside> */}
+
         <main className="main">
           <div className="content">
             <Route path="/" component={HomeBage} exact />
