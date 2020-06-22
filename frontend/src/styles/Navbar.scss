@@ -41,6 +41,8 @@
 }
 
 .navbar-container {
+    background-color: $backgroundColor;
+    width: 100%;
     font-weight: 400;
     font-style: normal;
     font-size: 20px;
@@ -53,6 +55,7 @@
     justify-content: space-between;
     align-items: center;
     color: $textColor;
+    z-index: 4;
 
     a {
         color: $textColor;
@@ -109,20 +112,22 @@
                     text-transform: none;
                     line-height: 1.3;
                     color: $menuColor;
+
                     &:hover {
                         color: $textColor;
                         transition: 1s ease-out;
                     }
-                  
+
                 }
-              
+
             }
         }
 
         li {
             padding-left: 40px;
         }
-        span{
+
+        span {
             transform: rotate(-90deg);
             display: inline-block;
             padding: 10px;
@@ -147,4 +152,24 @@
         width: 60px;
     }
 
+    .img--modifier {
+        height: 30px;
+        width: 40px;
+    }
+
+}
+
+.navbar--move {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    transform: translate(0px, -500%) rotate(0deg);
+    box-shadow: 0px 10px 30px #c8c8c8;
+    z-index: 11;
+}
+
+
+.nav--modifier {
+    height: 50px;
 }
