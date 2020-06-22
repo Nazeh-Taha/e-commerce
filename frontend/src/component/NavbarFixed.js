@@ -1,92 +1,24 @@
 import React, { useRef, useState, useEffect } from "react";
 import "../styles/Navbar.scss";
 import { useDispatch, useSelector } from "react-redux";
-import {  useIntersection } from "react-use";
 import { Link } from "react-router-dom";
-import gsap, { TweenMax, Power3, Power4 } from "gsap";
+import  { TweenMax, Power3 } from "gsap";
 import logo from "../images/logo.png";
 import { logout } from "../actions/userActions";
-import NavbarFixed from "./NavbarFixed";
 
-const NavBar = () => {
+
+const NavbarFixed = () => {
   //git user info
   const dispatch = useDispatch();
   const userSignin = useSelector((state) => state.userSignin); //get user info from store
   const { userInfo } = userSignin;
 
 
-  //get dom element
-  let navContainer = useRef(null);
+  //get dom element;
   let linksMenu = useRef(null);
   let layout = useRef(null);
-  const intersection = useIntersection(navContainer, {
-    root: null,
-    rootMargin: "100px",
-    threshold: 0.1,
-  });
-  // the fixed navbar functions
-  const topPosition = (element) => {
-    console.log("top");
-    gsap.to(element, 0.3, {
-      y: "-100%",
-      rotation: 4,
-      ease: Power4.out,
-      stagger: {
-        amount: 0.3,
-      },
-      delay:0.3
-    });
-    gsap.to(element, 0.3, {
-      y: "-190%",
-      rotation: 0,
-      ease: Power4.out,
-      stagger: {
-        amount: 0.3,
-      },
-      delay:0.4
-    });
-  };
-  const fixedPosition = (element) => {
-    
-    gsap.to(element, 0.3, {
-      y: "10%",
-      rotation: -4,
-      ease: Power4.out,
-      stagger: {
-        amount: 0.3,
-      },
-      delay:0.3
-    });
-    gsap.to(element, 0.3, {
-      y: "0%",
-      rotation: 0,
-      ease: Power4.out,
-      stagger: {
-        amount: 0.3,
-      },
-      delay:0.4
-    });
-    
-  };
+ 
 
-  intersection && intersection.intersectionRatio < 0.1
-    ? fixedPosition(".navbar--move")
-    : topPosition(".navbar--move");
-  //progress bar function
-  // let delay = 300;
-
-  // function delayed() {
-  //   setWidth((width += 10));
-  //   if (width > 20) {
-  //     delay += 2;
-  //   }
-  //   if (width < 100) {
-  //     setTimeout(delayed, delay);
-  //   }
-  //   setTimeout(function () {
-  //     document.querySelector(".progress-div").classList.add("hide");
-  //   }, 6000);
-  // }
   //log out function
   const logoutHandler = () => {
     dispatch(logout());
@@ -156,23 +88,7 @@ const NavBar = () => {
     });
   };
 
-  useEffect(() => {
-    // delayed();
-    // console.log(navContainer.current)
-    // if(y > 400){
-    //   TweenMax.to(navContainer,2,{
-    //    position: "fixed",
-    //    height: 50
-    //   })
-    // }
-    // if(y<300){
-    //      TweenMax.to(navContainer,0.1,{
-    //     position: "relative",
-    //     height: 130
-    //   })
-    // }
-    return () => {};
-  }, []);
+
 
   return (
     <>
@@ -185,8 +101,8 @@ const NavBar = () => {
       {/* <div className="progress-div">
         <div className="progress" style={{ width: `${width}%` }}></div>
       </div> */}
-      <div ref={navContainer}>
-        <div className="navbar-container">
+      <div>
+        <div className="navbar-container nav--modifier">
           <ul className="navbar-links">
             <li>
               <Link to="/">Home</Link>
@@ -203,7 +119,7 @@ const NavBar = () => {
           </ul>
           <div className="navbar-logo">
             <Link to="/">
-              <img src={logo} alt="logo" />
+              <img src={logo} alt="logo" className="img--modifier"/>
             </Link>
           </div>
 
@@ -275,12 +191,9 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar--move">
-          <NavbarFixed />
-        </div>
       </div>
     </>
   );
 };
 
-export default NavBar;
+export default NavbarFixed;
