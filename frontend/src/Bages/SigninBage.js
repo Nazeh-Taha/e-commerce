@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { signin } from "../actions/userActions";
 
 function SigninBage(props) {
@@ -21,6 +21,7 @@ function SigninBage(props) {
     e.preventDefault();
     dispatch(signin(email, password));
   };
+  if(userSignin.userInfo) return <Redirect to="/"/>
   return (
     <div className="form">
       <form onSubmit={submitHandler}>

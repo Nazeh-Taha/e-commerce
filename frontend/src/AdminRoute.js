@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import AdminHome from "./adminBages/AdminHome"
 import "./App.css";
 
 import CreateProductBage from "./bages/CreateProductBage";
@@ -11,8 +11,8 @@ function AdminRoute() {
   return (
     <Router>
 
-          <PrivateRoute path="/admin/dashbord" component={CreateProductBage} />
-          <Route path="/" component={UserRoute} exact/>
+          <PrivateRoute path="/admin/dashbord" component={AdminHome} />
+      
     
     </Router>
   );

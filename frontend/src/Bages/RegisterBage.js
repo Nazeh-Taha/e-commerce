@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { register } from "../actions/userActions";
 
 function RegisterBage(props) {
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, userInfo, error } = userRegister;
   const dispatch = useDispatch();
+  const userSignin = useSelector((state) => state.userSignin); //get user info from store
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +25,8 @@ function RegisterBage(props) {
     e.preventDefault();
     dispatch(register(name, email, password));
   };
+  
+ if(userSignin.userInfo) return <Redirect to="/"/>
   return (
     <div className="form">
       <form onSubmit={submitHandler}>
