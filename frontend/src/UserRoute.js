@@ -1,24 +1,18 @@
 import React from "react";
-import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeBage from "./bages/HomeBage";
 import ProductBage from "./bages/ProductBage";
 import "./App.css";
 import CartBage from "./bages/CartBage";
 import SigninBage from "./bages/SigninBage";
 import RegisterBage from "./bages/RegisterBage";
-import CreateProductBage from "./bages/CreateProductBage";
-import PrivateRoute from "./PrivateRoute";
 import NavBar from "./component/Navbar";
-import { useLocation } from "react-use";
-import AdminRoute from "./AdminRoute";
 
 
-function App() {
-  let path = useLocation();
-  console.log(path.pathname)
+function UserRoute() {
   return (
     <Router>
-      {path.pathname.match(/admin/) ? null : <NavBar />}
+      <NavBar />
       <main className="main">
         <div className="content">
           <Route path="/" component={HomeBage} exact />
@@ -26,15 +20,13 @@ function App() {
           <Route path="/register" component={RegisterBage} />
           <Route path="/cart/:id?" component={CartBage} />
           <Route path="/products/:id" component={ProductBage} />
-          {/* admin Routes */}
-          <PrivateRoute path="/admin/dashbord" component={AdminRoute} />
         </div>
       </main>
-      {path.pathname.match(/admin/) ? null : (
-        <footer className="footer">all right reserved.</footer>
-      )}
+      <footer className="footer">all right reserved.</footer>
     </Router>
   );
 }
 
-export default App;
+export default UserRoute;
+
+

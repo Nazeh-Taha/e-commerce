@@ -2,10 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import "../styles/Navbar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import  { TweenMax, Power3 } from "gsap";
+import { TweenMax, Power3 } from "gsap";
 import logo from "../images/logo.png";
 import { logout } from "../actions/userActions";
-
 
 const NavbarFixed = () => {
   //git user info
@@ -13,11 +12,9 @@ const NavbarFixed = () => {
   const userSignin = useSelector((state) => state.userSignin); //get user info from store
   const { userInfo } = userSignin;
 
-
   //get dom element;
   let linksMenu = useRef(null);
   let layout = useRef(null);
- 
 
   //log out function
   const logoutHandler = () => {
@@ -88,8 +85,6 @@ const NavbarFixed = () => {
     });
   };
 
-
-
   return (
     <>
       <div
@@ -119,7 +114,7 @@ const NavbarFixed = () => {
           </ul>
           <div className="navbar-logo">
             <Link to="/">
-              <img src={logo} alt="logo" className="img--modifier"/>
+              <img src={logo} alt="logo" className="img--modifier" />
             </Link>
           </div>
 

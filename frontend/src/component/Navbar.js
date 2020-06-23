@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import "../styles/Navbar.scss";
 import { useDispatch, useSelector } from "react-redux";
-import {  useIntersection } from "react-use";
+import { useIntersection } from "react-use";
 import { Link } from "react-router-dom";
 import gsap, { TweenMax, Power3, Power4 } from "gsap";
 import logo from "../images/logo.png";
@@ -14,7 +14,6 @@ const NavBar = () => {
   const userSignin = useSelector((state) => state.userSignin); //get user info from store
   const { userInfo } = userSignin;
 
-
   //get dom element
   let navContainer = useRef(null);
   let linksMenu = useRef(null);
@@ -26,7 +25,6 @@ const NavBar = () => {
   });
   // the fixed navbar functions
   const topPosition = (element) => {
-    console.log("top");
     gsap.to(element, 0.3, {
       y: "-100%",
       rotation: 4,
@@ -34,7 +32,7 @@ const NavBar = () => {
       stagger: {
         amount: 0.3,
       },
-      delay:0.3
+      delay: 0.3,
     });
     gsap.to(element, 0.3, {
       y: "-190%",
@@ -43,11 +41,10 @@ const NavBar = () => {
       stagger: {
         amount: 0.3,
       },
-      delay:0.4
+      delay: 0.4,
     });
   };
   const fixedPosition = (element) => {
-    
     gsap.to(element, 0.3, {
       y: "10%",
       rotation: -4,
@@ -55,7 +52,7 @@ const NavBar = () => {
       stagger: {
         amount: 0.3,
       },
-      delay:0.3
+      delay: 0.3,
     });
     gsap.to(element, 0.3, {
       y: "0%",
@@ -64,9 +61,8 @@ const NavBar = () => {
       stagger: {
         amount: 0.3,
       },
-      delay:0.4
+      delay: 0.4,
     });
-    
   };
 
   intersection && intersection.intersectionRatio < 0.1
