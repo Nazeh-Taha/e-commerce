@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Typography,
@@ -11,8 +11,9 @@ import {
 import AlertMessage from "../component/AlertMessage";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import SaveIcon from "@material-ui/icons/Save";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveCategory } from "../actions/categoryActions";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
 import "../styles/CreateCategory.scss";
 const useStyles = makeStyles((theme) => ({
@@ -25,9 +26,20 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     width: "25ch",
   },
+  createDiv: {
+    display: "flex",
+    marginTop: "10px",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  circularProgress: {
+    margin: "10px",
+  },
 }));
 
 const CreateCategory = () => {
+  const categorySave = useSelector((state) => state.categorySave);
+  const { loading, success, error } = categorySave;
   const [categoryName, setCategoryName] = useState("");
   const [alertMessage, setAlertMessage] = useState({});
   const [imageId, setImageId] = useState({});
@@ -35,6 +47,7 @@ const CreateCategory = () => {
   const [file, setFile] = useState("");
   const dispatch = useDispatch();
   const classes = useStyles();
+  console.log(categorySave);
   //git file info
   const onChange = (event) => {
     setFile(event.target.files[0]);
@@ -43,7 +56,7 @@ const CreateCategory = () => {
   const showMessage = (msg) => {
     setAlertMessage(msg);
   };
-  //clear message - close alert 
+  //clear message - close alert
   const clearMessage = () => {
     setAlertMessage({});
   };
@@ -85,13 +98,26 @@ const CreateCategory = () => {
 
   // handling create new category
   const handleSaveCategory = () => {
-    dispatch(
-      saveCategory({
-        name: categoryName,
-        imageId: imageId,
-      })
-    );
+    if (imageId && categoryName) {
+      dispatch(
+        saveCategory({
+          name: categoryName,
+          imgId: imageId,
+        })
+      );
+    }else if(!imageId){
+      showMessage({ msg: "ERROR - Please upload Image", type: "error" });
+    }else if(!categoryName){
+      showMessage({ msg: "ERROR - Please chose name for category", type: "error" });
+    }
   };
+  useEffect(() => {
+    if (success) {
+      showMessage({ msg: "Success - New Category Created", type: "success" });
+    } else if(success === false){
+      showMessage({ msg: "ERROR - Didn't Create The Category", type: "error" });
+    }
+  }, [success, error]);
 
   return (
     <div className={classes.root}>
@@ -145,16 +171,24 @@ const CreateCategory = () => {
         </form>
 
         <img id="img" className="category__img"></img>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.button}
-          startIcon={<SaveIcon />}
-          onClick={handleSaveCategory}
-        >
-          Save Category
-        </Button>
+        <div className={classes.createDiv}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            startIcon={<SaveIcon />}
+            onClick={handleSaveCategory}
+          >
+            Save Category
+          </Button>
+          {loading && (
+            <CircularProgress
+              color="secondary"
+              className={classes.circularProgress}
+            />
+          )}
+        </div>
       </Container>
     </div>
   );

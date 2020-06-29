@@ -4,7 +4,7 @@ import {
   IMAGE_SAVE_FAIL,
 } from "../constants/categoryConstant";
 
-function saveCategoryImage(state = { imageData: {} }, action) {
+function saveCategoryReducer(state = { category: {} }, action) {
   switch (action.type) {
     case IMAGE_SAVE_REQUEST:
       return { loading: true };
@@ -17,4 +17,4 @@ function saveCategoryImage(state = { imageData: {} }, action) {
   }
 }
 
-export {saveCategoryImage};
+export {saveCategoryReducer};

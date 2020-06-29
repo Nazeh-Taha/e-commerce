@@ -68,15 +68,16 @@ router.get("/uploadimage/:filename", (req, res) => {
     }
   });
 });
-router.post("/Upload/image", async (req, res) => {
+//create new category
+router.post("/", async (req, res) => {
   const category = new Category({
     name: req.body.name,
-    image: req.body.image,
+    imgId: req.body.imgId,
   });
 
   const newCategory = category.save();
 
-  if (newCategory) {
+  if (newCategory.length) {
     res.status(201).send({ msg: "New Category Created", data: newCategory });
   } else {
     res.status(500).send({ msg: "Error in Creatin Category" });
