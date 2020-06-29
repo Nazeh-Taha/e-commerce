@@ -17,10 +17,12 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import { Route, Switch, NavLink } from "react-router-dom";
+import { Route, Switch, NavLink,Link } from "react-router-dom";
 import AllProducts from "./AllProducts";
 import CreateProduct from "./CreateProduct";
 import CreateCategory from "./CreateCategory";
+import { logout } from "../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -81,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersistentDrawerLeft() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -91,6 +94,11 @@ export default function PersistentDrawerLeft() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    window.location.reload(false);
   };
 
   return (
@@ -113,7 +121,9 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+          <Link to="/signin" onClick={() => logoutHandler()}>
+                        Logout
+                      </Link>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -145,10 +155,10 @@ export default function PersistentDrawerLeft() {
               path: "/admin/dashbord/create-category",
             },
           ].map((item, index) => (
-            <NavLink to={item.path}>
+            <NavLink to={item.path} key={index}>
               <ListItem button key={item.text}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                   <InboxIcon />
                 </ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItem>

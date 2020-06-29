@@ -7,6 +7,7 @@ import {
   ProductSaveReducer,
   productDeleteReducer,
 } from "./reducers/productReducer";
+import {saveCategoryImage} from "./reducers/categoryReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import {
   userSigninReducer,
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   productSave: ProductSaveReducer,
   productDelete: productDeleteReducer,
+  imageSave:saveCategoryImage,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

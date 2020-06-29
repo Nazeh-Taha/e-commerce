@@ -1,28 +1,21 @@
 import express from "express";
 import dotenv from "dotenv";
-import config from "./config";
-import mongoose from "mongoose";
 import userRouter from "./routes/userRoute";
 import productRoute from "./routes/productRoute";
-
+import categoryRoute from "./routes/categoryRoute";
+import { dbConnection,conn } from "./dbConnect";
 dotenv.config();
+
 const PORT = process.env.PORT || 8000;
-const mongodbUrl = config.MONGODB_URL;
+//connecting to DB
+dbConnection();
 
-mongoose
-  .connect(mongodbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .then(() => console.log("connected to database"))
-  .catch((err) => console.log(err));
 const app = express();
-
 app.use(express.json());
-app.use("/api/users", userRouter);
-app.use("/api/products", productRoute)
 
+app.use("/api/users", userRouter);
+app.use("/api/products", productRoute);
+app.use("/api/category", categoryRoute);
 
 app.listen(PORT, () => {
   console.log("listen to port 8000");

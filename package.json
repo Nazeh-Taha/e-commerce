@@ -17,11 +17,16 @@
   },
   "homepage": "https://github.com/Nazeh-Taha/e-commerce#readme",
   "dependencies": {
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "gridfs-stream": "^1.1.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.18"
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.18",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^4.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
