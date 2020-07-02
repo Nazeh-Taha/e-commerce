@@ -23,6 +23,7 @@ import CreateProduct from "./CreateProduct";
 import CreateCategory from "./CreateCategory";
 import { logout } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
+import AllCategories from "./AllCategories";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -148,12 +149,17 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           {[
+            { text: "HOME", path: "/" },
             { text: "All Products", path: "/admin/dashbord/products" },
             { text: "Create Product", path: "/admin/dashbord/create-product" },
             {
               text: "Create Category",
               path: "/admin/dashbord/create-category",
             },
+            {
+              text: "All Category",
+              path: "/admin/dashbord/all-categories",
+            }
           ].map((item, index) => (
             <NavLink to={item.path} key={index}>
               <ListItem button key={item.text}>
@@ -184,6 +190,10 @@ export default function PersistentDrawerLeft() {
           <Route
             path="/admin/dashbord/create-product"
             component={CreateProduct}
+          />
+                    <Route
+            path="/admin/dashbord/all-categories"
+            component={AllCategories}
           />
         </Switch>
       </main>

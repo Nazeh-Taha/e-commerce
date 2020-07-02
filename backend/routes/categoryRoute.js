@@ -23,6 +23,7 @@ conn.once("open", () => {
 
 const storage = new GridFsStorage({
   url: mongodbUrl,
+  options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {
@@ -41,12 +42,13 @@ const storage = new GridFsStorage({
 });
 
 const upload = multer({ storage });
-// upload image for category
+// upload image in Mongodb for category
 router.post("/uploadimage", upload.single("file"), (req, res, err) => {
   res.json({ file: req.file });
   // if (err) throw err;
   res.status(201).send();
 });
+//get image from Mongodb
 router.get("/uploadimage/:filename", (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
@@ -55,7 +57,6 @@ router.get("/uploadimage/:filename", (req, res) => {
         err: "No file exists",
       });
     }
-
     // Check if image
     if (file.contentType === "image/jpeg" || file.contentType === "image/png") {
       // Read output to browser
@@ -69,19 +70,21 @@ router.get("/uploadimage/:filename", (req, res) => {
   });
 });
 //create new category
-router.post("/", async (req, res) => {
+router.post("/",isAuth, isAdmin , async (req, res) => {
   const category = new Category({
     name: req.body.name,
     imgId: req.body.imgId,
   });
-
-  const newCategory = category.save();
-
-  if (newCategory.length) {
+  try {
+    const newCategory = category.save();
     res.status(201).send({ msg: "New Category Created", data: newCategory });
-  } else {
+  } catch {
     res.status(500).send({ msg: "Error in Creatin Category" });
   }
 });
 
+router.get("/", async (req,res) =>{
+  const category = await Category.find({});
+  res.send(category)
+})
 export default router;

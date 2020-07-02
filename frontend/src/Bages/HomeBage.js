@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listProducts } from "../actions/productActions";
 import MainSlider from "../component/MainSlider";
+import Category from "../component/Category";
 
 
 function HomeBage() {
@@ -24,6 +25,7 @@ function HomeBage() {
    
    
    <MainSlider />
+   <Category />
       <ul className="products">
         {products.map((product, i) => (
           <li key={i}>

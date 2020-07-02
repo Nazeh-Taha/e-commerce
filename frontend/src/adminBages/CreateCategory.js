@@ -42,12 +42,12 @@ const CreateCategory = () => {
   const { loading, success, error } = categorySave;
   const [categoryName, setCategoryName] = useState("");
   const [alertMessage, setAlertMessage] = useState({});
-  const [imageId, setImageId] = useState({});
+  const [imageId, setImageId] = useState("");
   const [uploadPersentage, setUploadPersentage] = useState(0);
   const [file, setFile] = useState("");
   const dispatch = useDispatch();
   const classes = useStyles();
-  console.log(categorySave);
+ 
   //git file info
   const onChange = (event) => {
     setFile(event.target.files[0]);
@@ -80,7 +80,7 @@ const CreateCategory = () => {
             setTimeout(() => setUploadPersentage(0), 10000);
           },
         });
-        setImageId(res.data.file.id);
+        setImageId(res.data.file.filename);
         document
           .getElementById("img")
           .setAttribute(
@@ -105,19 +105,24 @@ const CreateCategory = () => {
           imgId: imageId,
         })
       );
-    }else if(!imageId){
+    } else if (imageId === "") {
       showMessage({ msg: "ERROR - Please upload Image", type: "error" });
-    }else if(!categoryName){
-      showMessage({ msg: "ERROR - Please chose name for category", type: "error" });
+    } else if (!categoryName) {
+      showMessage({
+        msg: "ERROR - Please chose name for category",
+        type: "error",
+      });
     }
   };
   useEffect(() => {
     if (success) {
       showMessage({ msg: "Success - New Category Created", type: "success" });
-    } else if(success === false){
+      setFile("");
+      setCategoryName("");
+    } else if (success === false) {
       showMessage({ msg: "ERROR - Didn't Create The Category", type: "error" });
     }
-  }, [success, error]);
+  }, [success]);
 
   return (
     <div className={classes.root}>
@@ -127,7 +132,6 @@ const CreateCategory = () => {
         <TextField
           id="outlined-full-width"
           label="Category"
-          style={{ margin: 10 }}
           placeholder="Category Name"
           fullWidth
           margin="normal"
@@ -179,6 +183,7 @@ const CreateCategory = () => {
             className={classes.button}
             startIcon={<SaveIcon />}
             onClick={handleSaveCategory}
+            disabled={imageId === "" || categoryName === ""}
           >
             Save Category
           </Button>

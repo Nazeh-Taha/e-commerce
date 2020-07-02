@@ -1,0 +1,55 @@
+@import './variables';
+
+.category-container {
+    padding: 50px 0px 40px 0px;
+
+    .category-container--warpper {
+        padding-left: $containerPadding;
+        padding-right: $containerPadding;
+
+        .category-container--row {
+
+            .product-category {
+                .category__item {
+                    position: relative;
+                    height: 54vh;
+                    .category__image {
+                        .category__image--link {
+                            
+                            .category__image--warpper {
+                                width: 100%;
+                                height: 100%;
+
+                                img {
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                        }
+                    }
+                    .category__contant{
+                        position: absolute;
+                        bottom: 8%;
+                        left: -10%;
+                        a:nth-child(1){
+                            display: block;
+                            text-decoration: none;
+                            font-weight: 300;
+                            font-size: 1.5rem;
+                            color: $textColor;
+                            line-height: 1.6;
+                        }
+                        a:nth-child(2){
+                            display: block;
+                            text-decoration: none;
+                            color: $textColor;
+                            font-size: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
