@@ -19,7 +19,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { Route, Switch, NavLink,Link } from "react-router-dom";
 import AllProducts from "./AllProducts";
-import CreateProduct from "./CreateProduct";
+import CreateProducts from "./CreateProducts";
 import CreateCategory from "./CreateCategory";
 import { logout } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -189,7 +189,7 @@ export default function PersistentDrawerLeft() {
           <Route path="/admin/dashbord/products" component={AllProducts} />
           <Route
             path="/admin/dashbord/create-product"
-            component={CreateProduct}
+            component={CreateProducts}
           />
                     <Route
             path="/admin/dashbord/all-categories"

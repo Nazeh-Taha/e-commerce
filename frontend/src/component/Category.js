@@ -16,7 +16,7 @@ const Category = () => {
     <div>
       <div className="category-container">
         <div className="category-container--warpper">
-          <Grid container spacing={7} className="category-container--row">
+          <Grid container spacing={6} className="category-container--row">
             {categories.map((category, index) => (
               <Grid
                 item

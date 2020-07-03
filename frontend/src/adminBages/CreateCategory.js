@@ -142,8 +142,7 @@ const CreateCategory = () => {
           value={categoryName}
           onChange={(e) => setCategoryName(e.target.value)}
         />
-        {/* <input type="file" name="fileToUpload" id="fileToUpload"  value={categoryImage}
-        onChange={(e)=>setCategoryImage(e.target.value)}></input> */}
+
         <form onSubmit={handleUpluadImage} encType="multipart/form-data">
           <input
             type="file"
