@@ -1,0 +1,28 @@
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+    z-index: -1;
+    cursor: pointer;
+
+}
+.inputfile--label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #3f51b5;
+    display: inline-block;
+    cursor: pointer;
+    
+}
+
+.category-price--div{
+    width: 100%;
+    #demo-controlled-open-select-label{
+        width: 50%;
+    }
+    #demo-controlled-open-select{
+        width: 50%;
+    }
+}

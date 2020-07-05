@@ -38,26 +38,31 @@ router.post('/upload-images', upload.array('imgCollection', 6), (req, res, next)
     for (var i = 0; i < req.files.length; i++) {
         reqFiles.push(url + '/uploads/' + req.files[i].filename)
     }
-
-    const user = new User({
-        // _id: new mongoose.Types.ObjectId(),
-        imgCollection: reqFiles
-    });
-
-    user.save().then(result => {
         res.status(201).json({
             message: "Done upload!",
-            userCreated: {
-                _id: result._id,
-                imgCollection: result.imgCollection
-            }
+
+                imgCollection: reqFiles
+          
         })
-    }).catch(err => {
-        console.log(err),
-            res.status(500).json({
-                error: err
-            });
-    })
+    // const user = new User({
+    //     // _id: new mongoose.Types.ObjectId(),
+    //     imgCollection: reqFiles
+    // });
+
+    // user.save().then(result => {
+    //     res.status(201).json({
+    //         message: "Done upload!",
+    //         userCreated: {
+    //             _id: result._id,
+    //             imgCollection: result.imgCollection
+    //         }
+    //     })
+    // }).catch(err => {
+    //     console.log(err),
+    //         res.status(500).json({
+    //             error: err
+    //         });
+    // })
 })
 
 router.get("/", (req, res, next) => {

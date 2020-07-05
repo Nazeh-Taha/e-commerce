@@ -16,15 +16,15 @@ const MainSlider = () => {
     duration: 500,
   };
  
-  useEffect(() => {
+//   useEffect(() => {
    
-    const slideItem = document.querySelector(".carousel-track");
-console.log(slideItem);
+//     const slideItem = document.querySelector(".carousel-track");
+// console.log(slideItem);
    
-    return () => {
+//     return () => {
       
-    };
-  }, [])
+//     };
+//   }, [])
   return (
     
       <Slider {...settings} className="slide-container" ref={carouselEl}>

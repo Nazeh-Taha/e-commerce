@@ -47,7 +47,7 @@ const CreateCategory = () => {
   const [file, setFile] = useState("");
   const dispatch = useDispatch();
   const classes = useStyles();
- 
+
   //git file info
   const onChange = (event) => {
     setFile(event.target.files[0]);
@@ -157,9 +157,9 @@ const CreateCategory = () => {
               <LinearProgress variant="determinate" value={uploadPersentage} />
             </Box>
             <Box minWidth={35}>
-              <Typography variant="body2" color="textSecondary">{`${Math.round(
-                uploadPersentage
-              )}%`}</Typography>
+              <Typography variant="body2" color="textSecondary">
+                {uploadPersentage}
+              </Typography>
             </Box>
           </Box>
           <Button
